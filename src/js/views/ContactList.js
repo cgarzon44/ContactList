@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { Context } from "../store/appContext";
-
 import "../../styles/demo.scss";
+import { Context } from "../store/appContext.js";
 
 export const ContactList = () => {
-	const { store, actions } = useContext(Context);
+	const { todos } = useContext(Context);
 
 	return (
 		<div className="container">
@@ -14,7 +13,7 @@ export const ContactList = () => {
 				<label>Username:</label>
 				<p>Insert Username</p>
 				<label>Email: </label>
-				<p>Insert Email</p>
+				<p>{todos}</p>
 			</div>
 		</div>
 	);
