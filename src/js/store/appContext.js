@@ -5,10 +5,26 @@ export const Context = React.createContext(null);
 
 export const withGlobalState = ComponentToBeWrapperd => {
 	const ComponentToBeReturned = () => {
-		const [todos, setTodos] = React.useState("hello");
+		const [contacts, setContact] = React.useState([]);
 
+		const removeContact = id => {
+			const removeArr = contacts.filter(contact => contact.id !== id);
+
+			setContact(removeArr);
+		};
+
+		const addContact = contact => {
+			if (!contact.text || /^\s*$/.test(contact.text)) {
+				return;
+			}
+			const newContacts = [contact, ...contacts];
+
+			setContact(newContacts);
+		};
+
+		const ContextValue = { contacts, removeContact, addContact };
 		return (
-			<Context.Provider value={{ todos }}>
+			<Context.Provider value={ContextValue}>
 				<ComponentToBeWrapperd />
 			</Context.Provider>
 		);

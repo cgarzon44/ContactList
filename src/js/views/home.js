@@ -1,12 +1,14 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import { Context } from "../store/appContext";
 import "../../styles/home.scss";
+import AddContact from "../component/AddContact";
 
-export const Home = () => (
-	<form className="text-center mt-5">
-		<label>Contact Name:</label>
-		<input type="text" />
-		<label>Email:</label>
-		<input type="text" />
-	</form>
-);
+export const Home = () => {
+	const { addContact } = React.useContext(Context);
+
+	return (
+		<>
+			<AddContact onSubmit={addContact} />
+		</>
+	);
+};
