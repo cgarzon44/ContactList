@@ -17,6 +17,7 @@ function ContactList(props) {
 			<div className="p-2 w-100">
 				<ul>
 					<li className="list-group-item">{contact.text}</li>
+					<li className="list-group-item">{contact.number}</li>
 				</ul>
 			</div>
 

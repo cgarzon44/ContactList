@@ -5,26 +5,29 @@ import PropTypes from "prop-types";
 
 function AddContact(props) {
 	const [input, setInput] = useState("");
+	const [inputNumber, setInputNumber] = useState("");
 
 	const handleChange = e => {
 		setInput(e.target.value);
 	};
+	const handleChangeNumber = e => {
+		setInputNumber(e.target.value);
+	};
 
 	const inputRef = useRef(null);
-
-	useEffect(() => {
-		inputRef.current.focus();
-	});
+	const inputNumberRef = useRef(null);
 
 	const handleSubmit = e => {
 		e.preventDefault();
 
 		props.onSubmit({
 			id: Math.floor(Math.random() * 1000),
-			text: input
+			text: input,
+			number: inputNumber
 		});
 
 		setInput("");
+		setInputNumber("");
 	};
 
 	return (
@@ -42,6 +45,14 @@ function AddContact(props) {
 						ref={inputRef}
 					/>
 				</div>
+				<label>Phone Number: </label>
+				<input
+					type="text"
+					value={inputNumber}
+					className="form-control form-control-lg border-0 add-todo-input bg-transparent rounded"
+					onChange={handleChangeNumber}
+					ref={inputNumberRef}
+				/>
 
 				<div className="col-auto px-0 mx-0 mr-2">
 					<button onClick={handleSubmit} type="button" className="btn btn-primary">
